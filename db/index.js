@@ -268,24 +268,22 @@ async function getPostsByTagName(tagName) {
     }
 }
 
-// async function getAllTags() {
-//     try {
-//         console.log('starting get all tags')
-//         const {rows} = await client.query(`
-//         SELECT * FROM tags;
-//         `);
-//         console.log('TAGS: ', rows)
-//         return rows;
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+async function getAllTags() {
+    try {
+        const {rows} = await client.query(`
+        SELECT * FROM tags;
+        `);
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
 
 module.exports = {
     client,
     getAllUsers,
     getAllPosts,
-    // getAllTags,
+    getAllTags,
     createUser,
     createPost,
     updateUser,

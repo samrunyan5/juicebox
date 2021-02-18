@@ -1,4 +1,4 @@
-const {client, getAllUsers, getAllPosts, createUser, createPost, updateUser, updatePost, getUserById, createTags, addTagsToPost, getPostsByTagName} = require('./index');
+const {client, getAllUsers, getAllPosts, getAllTags, createUser, createPost, updateUser, updatePost, getUserById, createTags, addTagsToPost, getPostsByTagName} = require('./index');
 
 async function createInitialUsers() {
     try {
@@ -132,6 +132,9 @@ async function testDB() {
 
         const happyPost = await getPostsByTagName('#happy')
         console.log('happy: ', happyPost)
+
+        const tags = await getAllTags();
+        console.log('tags: ', tags)
     } catch (error) {
         console.error(error);
     }

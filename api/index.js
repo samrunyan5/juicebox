@@ -8,6 +8,6 @@ const postsRouter = require('./posts');
 apiRouter.use('/posts', postsRouter);
 
 const tagsRouter = require('./tags');
-tagsRouter.use('/tags', tagsRouter)
+apiRouter.use('/tags', tagsRouter);
 
 module.exports = apiRouter;
