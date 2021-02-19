@@ -50,7 +50,6 @@ async function updateUser(id, fields = {}) {
 }
 
 async function getUserById(userId) {
-
     try {
         const {rows: [user]} = await client.query(`
             SELECT id, username, name, location, active
@@ -188,7 +187,6 @@ async function createTags(tagList) {
             IN (${selectValues});
         `, tagList)
 
-        console.log('tags: ', tags)
         return tags;
     } catch(error) {
         throw error;
@@ -279,6 +277,19 @@ async function getAllTags() {
     }
 }
 
+async function getUserByUsername(username) {
+    try {
+        const {rows: [user]} = await client.query(`
+            SELECT * FROM users
+            WHERE username=$1;
+        `, [username])
+
+        return user;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     client,
     getAllUsers,
@@ -291,5 +302,6 @@ module.exports = {
     getUserById,
     createTags,
     addTagsToPost,
-    getPostsByTagName
+    getPostsByTagName,
+    getUserByUsername
 }
